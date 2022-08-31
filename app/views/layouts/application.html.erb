@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -21,6 +22,17 @@
       <div class="notification is-danger">
         <p class="alert"><%= alert %></p>
       </div>
+    <% end %>
+
+    <%= link_to root_path, class: "navbar-item" do %>
+      <h1 class="title is-4" style="font-family: serif">wishlist</h1>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
+    <% else %>
+      <%= link_to "Log in", new_user_session_path, class: "button is-warning is-light" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "button is-warning is-light" %>
     <% end %>
 
     <%= yield %>

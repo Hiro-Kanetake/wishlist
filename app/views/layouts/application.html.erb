@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
   <body>
@@ -24,16 +25,66 @@
       </div>
     <% end %>
 
-    <%= link_to root_path, class: "navbar-item" do %>
-      <h1 class="title is-4" style="font-family: serif">wishlist</h1>
-    <% end %>
-
+    <nav class="navbar is-warning">
+      <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do %>
+        <h1 class="title is-4" style="font-family: serif">🎁 wishlist</h1>
+      <% end %>
+      <div class="navbar-burger burger" data-target"navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
     <% if user_signed_in? %>
-      <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
-    <% else %>
-      <%= link_to "Log in", new_user_session_path, class: "button is-warning is-light" %>
-      <%= link_to "Sign up", new_user_registration_path, class: "button is-warning is-light" %>
-    <% end %>
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+            <div class="control">
+              <%= link_to "View All Wishes", wishitems_path, class: "navbar-item button is-warning is-light" %>
+            </div>
+            <div class="control">
+              <%= link_to "Add Your Wishlist", new_wishitem_path, class: "navbar-item button is-warning is-light" %>
+            </div>
+        </div>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <div class="control">
+              <%= link_to "View All Users", users_path, class: "button is-warning is-light" %>
+            </div>
+            <div class="control">
+              <%= link_to "My Page", user_path(current_user), class: "button is-warning is-light" %>
+            </div>
+            <div class="control">
+              <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-item button is-warning is-light" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% else %>
+      <div id="navbarExampleTransparentExample">
+        <div class="navbar-item">
+        </div>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <div class="control">
+              <%= link_to "Log in", new_user_session_path, class: "button is-warning is-light" %>
+            </div>
+            <div class="control">
+              <%= link_to "Sign up", new_user_registration_path, class: "button is-warning is-light" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% end %>
+
+      </div>
+    </nav>
 
     <%= yield %>
   </body>

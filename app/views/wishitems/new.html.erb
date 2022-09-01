@@ -1,0 +1,56 @@
+<section class="hero is-success">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Add Your Wishlist
+            </h1>
+        </div>
+    </div>
+</section>
+
+<% if @wishitem.errors.any? %>
+    <div class="notification is-danger">
+        <h2><%= pluralize(@wishitem.errors.count, "error") %> There are some empty fields. </h2>
+        <ul>
+            <% @wishitem.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<section>
+    <div class="container">
+        <div class="column is-centered">
+            <div class=column is-6">
+                <%= form_for @wishitem do |f| %>
+            
+                <div class="field">
+                    <%= f.label :name, "Product Name", class:"label" %>
+                    <%= f.text_field :name, class: "input" %>
+                </div>
+
+                <div class="field">
+                    <%= f.label :description, "Description", class: "label" %>
+                    <%= f.text_area :description, class: "textarea" %>
+                </div>
+
+                <div class="field">
+                    <%= f.label :link, "Link to Product <optional>", class: "label" %>
+                    <%= f.text_field :link, class: "input" %>
+                </div>
+
+                <%# <div class="field"> %>
+                    <%# <%= f.label :image, "Image", class: "label" %>
+                    <%# <%= f.attachment_field :image, class: "input" %>
+                <%# </div> %>
+
+                <%= f.submit "Add to Wishlist", class: "button is-success" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

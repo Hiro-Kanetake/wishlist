@@ -1,0 +1,61 @@
+<section class="hero is-success">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Wish Item
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-7">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <%= attachment_image_tag @wishitem, :image, fallback: "gift.jpeg" %>
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4">
+                                    <%= @wishitem.name %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>
+                                <%= simple_format @wishitem.description %>
+                            </p>
+                            <% if @wishitem.link? %>
+                            <p>
+                                <%= link_to "Link to Product Page", @wishitem.link %>
+                            </p>
+                            <% end %>
+                            <% if @wishitem.user.id == current_user.id %>
+                            <%= link_to "Edit", edit_wishitem_path(@wishitem), class: "button is-success" %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-f">
+                <article class="panel-block">
+                    <p class="panel-heading">
+                    <%= link_to user_path(@wishitem.user) do %>
+                    Go to <%= @wishitem.user.username %>'s Page
+                    <% end %>
+                    </p>
+                    <div class="panel-block">
+                        <p class="control">
+                        <%# <%= @wishitem.user.profile %> 
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

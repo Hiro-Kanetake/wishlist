@@ -1,4 +1,4 @@
-<section class="hero is-success">
+<section class="hero is-small is-primary">
     <div class="hero-body">
         <div class="container">
             <h1 class="title">
@@ -11,15 +11,24 @@
 <section class="section">
     <div class="container">
         <div class="columns is-centered">
-            <div class="column is-7">
+            <div class="column is-3">
                 <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <%= link_to user_path(@wishitem.user) do %>
+                            <h2 class="has-text-danger">
+                                <%= @wishitem.user.username %>'s Wishlist
+                            </h2>
+                            <% end %>
+                        </div>
+                    </div>
                     <div class="card-image">
-                        <figure class="image is-4by3">
-                            <%= attachment_image_tag @wishitem, :image, fallback: "gift.jpeg" %>
+                        <figure class="image is-square">
+                            <%= attachment_image_tag @wishitem, :image, fallback: "gift.png" %>
                         </figure>
                     </div>
                     <div class="card-content">
-                        <div class="media">
+                        <div class="content">
                             <div class="media-content">
                                 <p class="title is-4">
                                     <%= @wishitem.name %>
@@ -30,31 +39,28 @@
                             <p>
                                 <%= simple_format @wishitem.description %>
                             </p>
-                            <% if @wishitem.link? %>
+                                <% if @wishitem.link? %>
                             <p>
                                 <%= link_to "Link to Product Page", @wishitem.link %>
                             </p>
                             <% end %>
-                            <% if @wishitem.user.id == current_user.id %>
-                            <%= link_to "Edit", edit_wishitem_path(@wishitem), class: "button is-success" %>
-                            <% end %>
+                        </div>
+                        <div class="media">
+                            <div class="media-content">
+                                <% if @wishitem.user.id == current_user.id %>
+                                    <%= link_to edit_wishitem_path(@wishitem), class: "panel-block" do %>
+                                        <span class="panel-icon">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        Edit Item
+                                    <% end %>
+                                <% end %>
+                                <%# <%= button_to "Delete Item", wishitem_path(@wishitem), method: :delete, class: "button is-danger" %> 
+                                <%# <%= link_to "Delete", wishitem_path(wishitem), method: :delete, data: {confirm: "Are you sure?"} %>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="column is-f">
-                <article class="panel-block">
-                    <p class="panel-heading">
-                    <%= link_to user_path(@wishitem.user) do %>
-                    Go to <%= @wishitem.user.username %>'s Page
-                    <% end %>
-                    </p>
-                    <div class="panel-block">
-                        <p class="control">
-                        <%# <%= @wishitem.user.profile %> 
-                        </p>
-                    </div>
-                </article>
             </div>
         </div>
     </div>

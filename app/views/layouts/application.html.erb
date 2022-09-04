@@ -25,10 +25,10 @@
       </div>
     <% end %>
 
-    <nav class="navbar is-warning">
+    <nav class="navbar is-dark">
       <div class="navbar-brand">
       <%= link_to root_path, class: "navbar-item" do %>
-        <h1 class="title is-4" style="font-family: serif">🎁 wishlist</h1>
+        <h1 class="title is-2 has-text-white" style="font-family: serif">wishlist</h1>
       <% end %>
       <div class="navbar-burger burger" data-target"navbarExampleTransparentExample">
         <span></span>
@@ -41,10 +41,10 @@
       <div class="navbar-item">
         <div class="field is-grouped">
             <div class="control">
-              <%= link_to "View All Wishes", wishitems_path, class: "navbar-item button is-warning is-light" %>
+              <%= link_to "View All Wishes", wishitems_path, class: "navbar-item button is-primary has-text-grey" %>
             </div>
             <div class="control">
-              <%= link_to "Add Your Wishlist", new_wishitem_path, class: "navbar-item button is-warning is-light" %>
+              <%= link_to "Add Your Wishlist", new_wishitem_path, class: "navbar-item button is-primary has-text-grey" %>
             </div>
         </div>
       </div>
@@ -52,10 +52,10 @@
         <div class="navbar-item">
           <div class="field is-grouped">
             <div class="control">
-              <%= link_to "View All Users", users_path, class: "button is-warning is-light" %>
+              <%= link_to "View All Users", users_path, class: "button is-warning is-danger" %>
             </div>
             <div class="control">
-              <%= link_to "My Page", user_path(current_user), class: "button is-warning is-light" %>
+              <%= link_to "My Page", user_path(current_user), class: "button is-warning is-danger" %>
             </div>
             <div class="control">
               <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-item button is-warning is-light" %>

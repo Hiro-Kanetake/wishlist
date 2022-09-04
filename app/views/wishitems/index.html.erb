@@ -1,4 +1,4 @@
-<section class="hero is-success">
+<section class="hero is-small is-primary">
     <div class="hero-body">
         <div class="container">
             <h1 class="title">
@@ -13,40 +13,42 @@
     <div class="container">
         <div class="columns is-multiline">
             <% @wishitems.each do |wishitem| %>
-            <div class="column is-4">
+            <div class="column is-3">
                 <div class="card">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                        <%= link_to wishitem_path(wishitem) do %>
-                            <%= attachment_image_tag wishitem, :image, fallback: "gift.jpeg" %>
-                        <% end %>
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="title">
-                            <%= link_to wishitem.name, wishitem_path(wishitem) %>
-                        </div>
-                    </div>
                     <div class="card-content">
                         <div class="media">
                             <div class="media-left">
                                 <figure class="image is-48x48">
                                 <%= link_to user_path(wishitem.user.id) do %>
-                                    <%= attachment_image_tag wishitem.user, :profile_image, fallback: "user.jpeg" %>
+                                    <%= attachment_image_tag wishitem.user, :profile_image, fallback: "user.png" %>
                                     <% end %>
                                 </figure>
                             </div>
                             <div class="media-content">
-                                <div class="title">
+                                <div class="subtitle">
                                     <%= link_to wishitem.user.username, user_path(wishitem.user.id) %>
                                 </div>
                             </div>
                         </div>
-                        <div class="content">
-                            <p>
-                                Added on <%= wishitem.updated_at.strftime("%Y-%m-%d") %>
-                            </p>
+                    </div>
+                    <div class="card-image">
+                        <figure class="image is-square">
+                        <%= link_to wishitem_path(wishitem) do %>
+                            <%= attachment_image_tag wishitem, :image, fallback: "gift.png" %>
+                        <% end %>
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="subtitle">
+                            <strong>
+                                <%= link_to wishitem.name, wishitem_path(wishitem) %>
+                            </strong>
                         </div>
+                    </div>
+                    <div class="content">
+                        <p class="has-text-grey">
+                            Added on <%= wishitem.updated_at.strftime("%Y-%m-%d") %>
+                        </p>
                     </div>
                 </div>
             </div>
